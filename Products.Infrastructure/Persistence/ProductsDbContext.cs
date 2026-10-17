@@ -12,6 +12,7 @@ namespace Products.Infrastructure.Persistence
         }
 
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<Employee> Employees => Set<Employee>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,22 @@ namespace Products.Infrastructure.Persistence
                 entity.Property(product => product.Price)
                     .HasPrecision(18, 2);
             });
+
+
+            modelBuilder.Entity<Employee>(entity =>
+            {
+                entity.HasKey(employee => employee.Id);
+
+                entity.Property(employee => employee.Name)
+                    .IsRequired();
+
+                entity.Property(employee => employee.Position)
+                    .IsRequired();
+
+                entity.Property(employee => employee.Salary)
+                    .HasPrecision(18, 2);
+            });
+
         }
     }
 }

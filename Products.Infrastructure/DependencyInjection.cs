@@ -16,6 +16,7 @@ namespace Products.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("ProductsConnection")));
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             return services;
         }
